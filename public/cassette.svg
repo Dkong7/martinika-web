@@ -1,0 +1,15 @@
+﻿<svg width="400" height="250" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="380" height="230" rx="15" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+  <rect x="30" y="30" width="340" height="140" rx="5" fill="#eee" opacity="0.9"/>
+  <text x="200" y="60" font-family="monospace" font-size="20" font-weight="bold" text-anchor="middle" fill="#000">MARTINIKA MIX VOL.1</text>
+  <line x1="40" y1="70" x2="360" y2="70" stroke="#000" stroke-width="2"/>
+  
+  <rect x="100" y="80" width="200" height="70" rx="5" fill="#111" stroke="#555" stroke-width="2"/>
+  
+  <circle cx="140" cy="115" r="25" fill="#fff" stroke="#000" stroke-width="8" stroke-dasharray="10 10" class="reel-left"/>
+  <circle cx="260" cy="115" r="25" fill="#fff" stroke="#000" stroke-width="8" stroke-dasharray="10 10" class="reel-right"/>
+  
+  <path d="M 40 240 L 360 240 L 340 180 L 60 180 Z" fill="#222" stroke="#444"/>
+  <circle cx="80" cy="210" r="10" fill="#000"/>
+  <circle cx="320" cy="210" r="10" fill="#000"/>
+</svg>

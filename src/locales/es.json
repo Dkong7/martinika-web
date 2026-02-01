@@ -1,0 +1,16 @@
+﻿{
+  "hero": {
+    "welcome": "BIENVENIDO A MI MENTE",
+    "album": "EL ALBUM",
+    "technical": {
+      "hd": "420-HD",
+      "color": "ULTRA COLOR",
+      "quality": "ULTRA ALTA CALIDAD",
+      "stereo": "ESTEREO HI-FI"
+    }
+  },
+  "player": {
+    "nowPlaying": "REPRODUCIENDO",
+    "track": "PISTA 01: EL ORIGEN"
+  }
+}

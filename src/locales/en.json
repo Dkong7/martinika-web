@@ -1,0 +1,16 @@
+﻿{
+  "hero": {
+    "welcome": "WELCOME TO MY MIND",
+    "album": "THE ALBUM",
+    "technical": {
+      "hd": "420-HD",
+      "color": "ULTRA COLOR",
+      "quality": "ULTRA HIGH QUALITY",
+      "stereo": "STEREO HI-FI"
+    }
+  },
+  "player": {
+    "nowPlaying": "NOW PLAYING",
+    "track": "TRACK 01: THE ORIGIN"
+  }
+}
