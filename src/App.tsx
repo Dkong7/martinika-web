@@ -2,14 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import HeroSection from './components/Hero/HeroSection';
 import TourSection from './components/TourSection/TourSection'; 
+// --- CORRECCIÓN DE RUTA AQUÍ (Carpeta 'Store') ---
+import StoreSection from './components/Store/StoreSection'; 
+// --------------------------------------------------
+import Footer from './components/Footer/Footer';
 import Player from './components/CassettePlayer/Player'; 
 import { LanguageProvider } from './context/LanguageContext';
-
-const Placeholder = ({ title }: { title: string }) => (
-    <div className="flex items-center justify-center h-[60vh] text-[#00ff00] font-mono text-lg tracking-widest animate-pulse opacity-80 border border-[#00ff00]/10 m-8 bg-black/20">
-        {title}
-    </div>
-);
 
 function App() {
   return (
@@ -25,17 +23,19 @@ function App() {
                     <>
                         <HeroSection />
                         
-                        {/* 1. Player va primero */}
+                        {/* 1. Player */}
                         <Player />
 
-                        {/* 2. TourSection va DESPUÉS del Player */}
+                        {/* 2. Tour */}
                         <TourSection />
+
+                        {/* 3. Tienda */}
+                        <StoreSection />
+
+                        {/* 4. Footer */}
+                        <Footer />
                     </>
                 } />
-                <Route path="/musica" element={<div className="container mx-auto pt-[150px]"><Placeholder title="AUDIO DATA ENCRYPTED" /></div>} />
-                <Route path="/conciertos" element={<div className="container mx-auto pt-[150px]"><Placeholder title="TOUR DATES UPLOADING" /></div>} />
-                <Route path="/tienda" element={<div className="container mx-auto pt-[150px]"><Placeholder title="MERCH STORE OFFLINE" /></div>} />
-                <Route path="/bio" element={<div className="container mx-auto pt-[150px]"><Placeholder title="BIOMETRIC DATA PROCESSING" /></div>} />
             </Routes>
           </main>
         </div>
