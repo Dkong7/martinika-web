@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import HeroDesktop from './HeroDesktop';
+﻿import HeroDesktop from './HeroDesktop';
 import HeroMobile from './HeroMobile';
 
 const HeroSection = () => {

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import { useState } from 'react';
 
 const CassettePlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,12 +18,10 @@ const CassettePlayer = () => {
 
         {/* Cassette Container */}
         <div className="relative bg-[#222] p-4 rounded-lg shadow-[0_0_20px_rgba(0,0,0,0.8)] border border-[#444]">
-            {/* El SVG importado como imagen */}
             <div className="relative">
                 <img src="/cassette.svg" alt="Cassette Tape" className="w-full h-auto drop-shadow-xl" />
                 
-                {/* Animación de los carretes (Superpuestos sobre el SVG) */}
-                {/* Ajustar posiciones según el SVG generado */}
+                {/* Animación de los carretes */}
                 <div className={`absolute top-[35%] left-[32%] w-[12%] h-[20%] rounded-full border-2 border-dashed border-black/50 ${isPlaying ? "animate-spin" : ""}`} style={{animationDuration: '2s'}}></div>
                 <div className={`absolute top-[35%] right-[32%] w-[12%] h-[20%] rounded-full border-2 border-dashed border-black/50 ${isPlaying ? "animate-spin" : ""}`} style={{animationDuration: '2s'}}></div>
             </div>

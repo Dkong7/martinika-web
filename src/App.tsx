@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
-import HeroSection from './components/Hero/HeroSection'; // <--- OJO AQUÍ: CARPETA EXTRA
-import CassettePlayer from './components/CassettePlayer';
+import HeroSection from './components/Hero/HeroSection';
+/* Importamos el contenedor principal del Player que gestiona Desktop/Mobile */
+import Player from './components/CassettePlayer/Player'; 
 import { LanguageProvider } from './context/LanguageContext';
 
 const Placeholder = ({ title }: { title: string }) => (
@@ -23,7 +24,8 @@ function App() {
                 <Route path="/" element={
                     <>
                         <HeroSection />
-                        <CassettePlayer />
+                        {/* Se utiliza el componente modular Player */}
+                        <Player />
                     </>
                 } />
                 <Route path="/musica" element={<div className="container mx-auto pt-[150px]"><Placeholder title="AUDIO DATA ENCRYPTED" /></div>} />

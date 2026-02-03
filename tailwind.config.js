@@ -7,31 +7,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Colores nuevos (Hero y Navbar)
-        'vhs-bone': '#f2eee0',
-        'vhs-yellow': '#ffcc00',
-        
-        // Tus colores anteriores (mantenidos por seguridad)
-        'martinika-green': '#ccff00',
-        'vhs-black': '#08080a', // Ajustado al negro suave del diseño nuevo
-        'vhs-gray': '#121212',
+        "vhs-bone": "#f2eee0",
+        "vhs-yellow": "#ffcc00",
+        "vhs-neon-green": "#00ff00",
+        "martinika-green": "#ccff00",
+        "vhs-black": "#08080a",
+        "vhs-gray": "#121212",
       },
       fontFamily: {
-        // IMPORTANTE: Esto conecta la fuente Chakra Petch con 'font-sans'
-        sans: ['"Chakra Petch"', 'sans-serif'],
-        mono: ['"Courier New"', 'Courier', 'monospace'],
+        sans: ["Chakra Petch", "sans-serif"],
+        mono: ["VT323", "monospace"],
       },
       animation: {
-        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'breathing': 'breathing 4s ease-in-out infinite',
+        "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "breathing": "breathing 4s ease-in-out infinite",
+        "spin-reels": "spin-reels 2s linear infinite",
       },
       keyframes: {
         breathing: {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "1" },
+        },
+        "spin-reels": {
+          "from": { transform: "rotate(0deg)" },
+          "to": { transform: "rotate(360deg)" }
         }
       }
-    },
+    }
   },
   plugins: [],
-}
+};

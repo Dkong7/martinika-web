@@ -1,0 +1,505 @@
+/* =========================================
+   1. ANIMACIONES Y EFECTOS
+   ========================================= */
+@keyframes spin-reel {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.animate-spin-reel {
+  animation: spin-reel 3s linear infinite !important;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.pulse-rec {
+  animation: pulse-red 1.5s ease-in-out infinite;
+}
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; text-shadow: 0 0 8px red; }
+  50% { opacity: 0.4; text-shadow: none; }
+}
+
+.pixel-transition {
+  animation: vhs-glitch-anim 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes vhs-glitch-anim {
+  0% { transform: translate(0); filter: blur(0); opacity: 1; }
+  20% { transform: translate(-4px, 2px) skewX(10deg); filter: blur(2px) hue-rotate(90deg) contrast(150%); }
+  40% { transform: translate(4px, -2px) skewX(-10deg); filter: blur(3px) invert(100%); opacity: 0.8; }
+  60% { transform: translate(-3px, 0); filter: blur(1px) sepia(80%); }
+  80% { transform: translate(2px, 1px); filter: blur(0) contrast(120%); }
+  100% { transform: translate(0); filter: blur(0); opacity: 1; }
+}
+
+/* =========================================
+   2. CONTENEDOR PRINCIPAL
+   ========================================= */
+.player-desktop-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* GAP MÍNIMO: 10px para pegar el panel derecho al arte */
+  gap: 51px;
+}
+
+/* =========================================
+   3. GRUPOS DE COLUMNAS
+   ========================================= */
+
+/* Columna Izquierda: Walkman + Rack */
+.left-column-group {
+  display: flex;
+  flex-direction: column;
+  width: 540px; 
+  gap: 25px;    
+  position: relative;
+}
+
+/* Columna Derecha: Arte + Playlist */
+.right-column-group {
+  display: flex;
+  flex-direction: column;
+  width: 420px; 
+  gap: 25px;
+}
+
+/* =========================================
+   4. SECCIÓN WALKMAN
+   ========================================= */
+.walkman-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.6;
+  z-index: 10;
+  overflow: visible !important;
+}
+
+.tape-reel-left, .tape-reel-right {
+  position: absolute; width: 14%; 
+  top: 49%; z-index: 20; 
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.tape-reel-left { left: 37.5%; }
+.tape-reel-right { right: 24%; }
+
+.cassette-mask-layer {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; z-index: 25;
+}
+
+.walkman-body-layer {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; z-index: 30; pointer-events: none;
+  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.7));
+}
+
+/* =========================================
+   5. SECCIÓN RACK
+   ========================================= */
+.rack-wrapper {
+  position: relative; width: 100%; z-index: 20;
+}
+
+.rack-base-img {
+  display: block; width: 100%; height: auto;
+  filter: drop-shadow(0 35px 70px rgba(0,0,0,0.9));
+}
+
+.rack-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 30;
+}
+
+.rack-top-panel {
+  position: absolute; top: 15.5%; left: 6.5%; width: 87%; height: 16%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2%; box-sizing: border-box;
+}
+
+.segment-bar-container {
+  display: flex; gap: 3px; 
+  height: 55%; width: 68%;
+  align-items: center; cursor: pointer;
+  background: rgba(0,0,0,0.5); padding: 3px; border-radius: 2px;
+}
+
+.segment {
+  flex: 1; height: 100%; background-color: #1a1a1a;
+  border-radius: 1px; opacity: 0.3; transition: all 0.05s;
+}
+
+.segment.spec-1 { background-color: #9d00ff; box-shadow: 0 0 10px #9d00ff; opacity: 1; }
+.segment.spec-2 { background-color: #ff0055; box-shadow: 0 0 10px #ff0055; opacity: 1; }
+.segment.spec-3 { background-color: #ffaa00; box-shadow: 0 0 10px #ffaa00; opacity: 1; }
+.segment.spec-4 { background-color: #eeff00; box-shadow: 0 0 10px #eeff00; opacity: 1; }
+.segment.spec-5 { background-color: #00ff55; box-shadow: 0 0 10px #00ff55; opacity: 1; }
+.segment.spec-6 { background-color: #00ffff; box-shadow: 0 0 10px #00ffff; opacity: 1; }
+
+.time-display {
+  font-family: monospace; font-size: 13px; font-weight: bold;
+  color: #00ff55; text-shadow: 0 0 3px #00ff55; width: 15%; text-align: right;
+}
+
+.rack-buttons-row {
+  position: absolute; top: 36%; left: 3%; width: 92%; height: 21%; 
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.rack-btn-slot {
+  width: 23%; height: 100%; display: flex; align-items: center; justify-content: center;
+}
+
+.rack-btn-image {
+  background: transparent; border: none; padding: 0; cursor: pointer;
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.1s;
+}
+
+.rack-btn-image img {
+  width: 100%; height: 100%; object-fit: contain; 
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.6));
+}
+
+.rack-btn-image:active { transform: scale(0.95); }
+
+.rack-volume-container {
+  position: absolute; top: 67%; left: 10%; width: 38%; height: 12%;
+  display: flex; align-items: center; cursor: w-resize; padding-left: 2%;
+}
+
+.volume-track {
+  position: relative; width: 90%; height: 5px;
+  background: #222; border-radius: 3px; box-shadow: inset 0 1px 2px #000;
+}
+
+.volume-knob {
+  position: absolute; top: 30%; width: 24px; height: 12px;
+  background: #555; transform: translate(-50%, -50%);
+  border: 1px solid #000; box-shadow: 0 3px 6px rgba(0,0,0,1);
+}
+
+.volume-knob::after {
+  content: ''; position: absolute; top: 2px; left: 50%;
+  transform: translateX(-50%); width: 4px; height: 4px;
+  background: #00ff55; box-shadow: 0 0 5px #00ff55;
+}
+
+/* =========================================
+   6. SECCIÓN DERECHA: ARTE + PLAYLIST
+   ========================================= */
+.vhs-box-art {
+  width: 100%; aspect-ratio: 1;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  border: 1px solid #333;
+  overflow: hidden;
+  background: #111;
+}
+
+.box-art-img {
+  width: 100%; height: 100%; object-fit: cover;
+  position: relative; z-index: 1;
+}
+
+.box-art-overlay {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 2; pointer-events: none;
+  opacity: 0.5; mix-blend-mode: overlay;
+}
+
+.vhs-playlist-container {
+  width: 100%; background-color: #0a0a0a;
+  border: 2px solid #333; border-radius: 3px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden; position: relative;
+}
+
+.vhs-playlist-container::before {
+  content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2; background-size: 100% 3px, 3px 100%; pointer-events: none;
+}
+
+.vhs-header {
+  background-color: #1a1a1a; color: #fff;
+  padding: 10px 15px; font-size: 14px;
+  border-bottom: 2px solid #333;
+  display: flex; justify-content: space-between; letter-spacing: 1px;
+}
+
+.vhs-header span.title {
+  color: #4eff00; text-shadow: 0 0 6px rgba(78, 255, 0, 0.6); font-weight: bold;
+}
+
+.vhs-list {
+  list-style: none; padding: 0; margin: 0; max-height: 220px; overflow-y: auto;
+}
+
+.vhs-list::-webkit-scrollbar { width: 10px; background: #000; }
+.vhs-list::-webkit-scrollbar-thumb { background: #333; border: 1px solid #555; }
+
+.vhs-track-item {
+  display: flex; justify-content: space-between;
+  padding: 10px 15px; border-bottom: 1px solid #222;
+  color: #aaa; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  position: relative; z-index: 3;
+}
+
+.vhs-track-item:hover { background-color: rgba(255, 255, 255, 0.05); color: #fff; }
+
+.vhs-track-item.active {
+  background-color: rgba(78, 255, 0, 0.1);
+  color: #4eff00; text-shadow: 0 0 4px #4eff00;
+  border-left: 4px solid #4eff00;
+}
+
+.vhs-track-item.active .track-icon { animation: blink-vhs 1s infinite; }
+@keyframes blink-vhs { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* =========================================
+   7. COLUMNA SOCIAL & KNOB (FINAL AJUSTADO)
+   ========================================= */
+
+/* Grupo Columna Derecha Extrema */
+.social-column-group {
+  position: relative;
+  width: 480px; /* Ancho GIGANTE */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Margen izquierdo negativo para pegar al arte */
+  margin-left: -20px; 
+  flex-shrink: 0;
+}
+
+.side-panel-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9));
+}
+
+.social-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- BOTONES SOCIALES (PEGAJOSOS) --- */
+.social-buttons-container {
+  position: absolute;
+  top: 8%; /* Ajuste fino superior */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* CERO GAP */
+  gap: 0; 
+}
+
+.social-btn-link {
+  display: block;
+  width: 25%; /* ANCHO CONSERVADO */
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.1s;
+  /* Margen negativo para eliminar cualquier espacio visual */
+  margin-bottom: -10%; 
+}
+
+.social-btn-link:active { transform: scale(0.95); }
+
+.social-btn-link img {
+  width: 100%; height: 100%; object-fit: contain;
+  /* Sombra interna para efecto de teclado */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* --- SECCIÓN KNOB (ANCLADO AL FONDO) --- */
+.knob-section {
+  position: absolute;
+  bottom: 10%; /* Anclado al fondo */
+  width: 100%;
+  height: 25%; /* Área del knob */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.knob-container {
+  position: relative;
+  width: 45%; /* Tamaño relativo */
+  aspect-ratio: 1;
+  cursor: grab;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.knob-container:active { cursor: grabbing; }
+
+.knob-img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,1));
+  will-change: transform; 
+}
+
+/* --- LEDS DEL VOLUMEN (ACERCADOS) --- */
+.knob-leds-ring {
+  position: absolute;
+  /* REDUCIDO: De 140% a 125% para acercar los LEDs al knob */
+  width: 55%; 
+  height: 55%;
+  pointer-events: none;
+}
+
+.knob-led {
+  position: absolute;
+  width: 6%; /* Tamaño relativo */
+  height: 6%; 
+  background-color: #111; 
+  border-radius: 1%;
+  box-shadow: inset 0 0 2px #000;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.1s, box-shadow 0.1s;
+}
+
+.knob-led.active {
+  background-color: #00ff55; 
+  box-shadow: 0 0 8px #00ff55, 0 0 15px #00ff55;
+}
+
+/* =========================================
+   8. SPECTRUM ANALYZER (VFD REALISTA & CAÓTICO)
+   ========================================= */
+
+.spectrum-container {
+  position: absolute;
+  top: 64%; 
+  left: 55.5%;
+  width: 36.5%;
+  height: 18%;
+  
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 2px 4px;
+  box-sizing: border-box;
+  
+  background-color: #050505; 
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Efecto rejilla/scanlines */
+.spectrum-container::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.5) 2px,
+    rgba(0, 0, 0, 0.5) 3px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.spectrum-bar {
+  width: 8%;
+  /* Gradiente VFD: Verde -> Amarillo -> Rojo */
+  background: linear-gradient(to top, 
+    #00ff41 0%, #00ff41 50%, 
+    #f6ff00 50%, #f6ff00 75%, 
+    #ff3100 75%, #ff3100 100%
+  );
+  
+  /* Estado base (silencio) */
+  height: 4px; 
+  opacity: 0.2;
+  border-radius: 1px;
+  transition: opacity 0.1s;
+}
+
+/* --- ESTADO ACTIVO: ANIMACIONES INDEPENDIENTES --- */
+.spectrum-container.playing .spectrum-bar {
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+}
+
+/* Asignamos patrones de movimiento únicos a cada barra para romper la sincronía */
+
+/* BASS (Barras 1-3): Movimiento pesado y fuerte */
+.spectrum-container.playing .spectrum-bar:nth-child(1) { animation: eq-bass 0.8s infinite ease-in-out; }
+.spectrum-container.playing .spectrum-bar:nth-child(2) { animation: eq-bass 0.7s infinite ease-out 0.1s; }
+.spectrum-container.playing .spectrum-bar:nth-child(3) { animation: eq-mid 0.6s infinite ease-in 0.2s; }
+
+/* MIDS (Barras 4-7): Movimiento rítmico y variado */
+.spectrum-container.playing .spectrum-bar:nth-child(4) { animation: eq-mid 0.5s infinite linear 0.15s; }
+.spectrum-container.playing .spectrum-bar:nth-child(5) { animation: eq-random 0.4s infinite ease-in-out; }
+.spectrum-container.playing .spectrum-bar:nth-child(6) { animation: eq-mid 0.55s infinite ease-out 0.05s; }
+.spectrum-container.playing .spectrum-bar:nth-child(7) { animation: eq-random 0.45s infinite linear 0.25s; }
+
+/* HIGHS (Barras 8-10): Movimiento rápido y nervioso (flicker) */
+.spectrum-container.playing .spectrum-bar:nth-child(8) { animation: eq-high 0.3s infinite ease-in-out; }
+.spectrum-container.playing .spectrum-bar:nth-child(9) { animation: eq-high 0.35s infinite ease-out 0.1s; }
+.spectrum-container.playing .spectrum-bar:nth-child(10) { animation: eq-high 0.25s infinite linear 0.05s; }
+
+/* --- DEFINICIÓN DE PATRONES DE MOVIMIENTO (KEYFRAMES) --- */
+
+/* Patrón 1: BASS (Grandes saltos, sostiene arriba) */
+@keyframes eq-bass {
+  0%   { height: 15%; }
+  30%  { height: 85%; }
+  50%  { height: 60%; }
+  70%  { height: 90%; }
+  100% { height: 20%; }
+}
+
+/* Patrón 2: MIDS (Oscilación media constante) */
+@keyframes eq-mid {
+  0%   { height: 30%; }
+  25%  { height: 60%; }
+  50%  { height: 40%; }
+  75%  { height: 80%; }
+  100% { height: 35%; }
+}
+
+/* Patrón 3: RANDOM (Caótico) */
+@keyframes eq-random {
+  0%   { height: 10%; }
+  20%  { height: 70%; }
+  40%  { height: 30%; }
+  60%  { height: 95%; }
+  80%  { height: 50%; }
+  100% { height: 15%; }
+}
+
+/* Patrón 4: HIGHS (Nervioso, picos rápidos y cortos) */
+@keyframes eq-high {
+  0%   { height: 10%; }
+  25%  { height: 40%; }
+  50%  { height: 20%; }
+  75%  { height: 55%; }
+  100% { height: 15%; }
+}
