@@ -1,4 +1,3 @@
-import React from 'react';
 import { PlayerDesktop } from './PlayerDesktop';
 import PlayerMobile from './PlayerMobile';
 import bgWood from '../../assets/bg-wood.png'; 
