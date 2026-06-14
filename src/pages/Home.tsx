@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroSection from '../components/Hero/HeroSection';
 // CORRECCIÓN AQUÍ: Agregamos "/TourSection" al final de la ruta
 import TourSection from '../components/TourSection/TourSection'; 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react'; // <--- CORRECCIÓN: Quitamos 'React', dejamos '{ useState }'
 
 // Datos de productos con imágenes reales y detalles para el modal
 const products = [

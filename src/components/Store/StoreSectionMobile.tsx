@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const products = [
   {
@@ -36,9 +36,15 @@ const StoreSectionMobile = () => {
   return (
     <section className="relative w-full py-20 bg-[#050505] overflow-hidden">
       
-      {/* FONDO */}
+      {/* FONDO CORREGIDO */}
       <div className="absolute inset-0 bg-[#050505]">
-         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+         <div 
+            className="absolute inset-0 opacity-10" 
+            style={{ 
+                backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', 
+                backgroundSize: '20px 20px' 
+            }}
+         ></div>
       </div>
       
       <div className="relative z-10 flex flex-col items-center px-4">

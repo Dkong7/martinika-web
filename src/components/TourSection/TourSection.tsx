@@ -1,4 +1,3 @@
-import React from 'react';
 import TourSectionDesktop from './TourSectionDesktop';
 import TourSectionMobile from './TourSectionMobile';
 
